@@ -1,0 +1,432 @@
+:root {
+  color-scheme: light dark;
+  --ui-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --bg: #ffffff;
+  --fg: #1a1a1a;
+  --muted: #5a6472;
+  --faint: #8b95a3;
+  --rule: #e3e6ea;
+  --code-bg: #f5f6f8;
+  --code-fg: #1a1a1a;
+  --code-hl: #fff4d6;
+  --accent: #1f6feb;
+  --warn-bg: #fff8e6;
+  --warn-border: #e0b341;
+  --note-bg: #f2f6fb;
+  --note-border: #7aa7dd;
+  --tip-bg: #f0f8f3;
+  --tip-border: #59a97c;
+  --mark-bg: #fff2a8;
+  --kbd-bg: #fafbfc;
+  --kbd-shadow: #c7ccd3;
+  --diff-add-bg: #e9f7ee;
+  --diff-add-word: #b8e6c8;
+  --diff-add-fg: #146c2e;
+  --diff-del-bg: #fdeceb;
+  --diff-del-word: #f7cac5;
+  --diff-del-fg: #b3261e;
+  --diff-gap-bg: #eceef1;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14171b;
+    --fg: #e6e9ee;
+    --muted: #98a2b3;
+    --faint: #6b7484;
+    --rule: #2b3138;
+    --code-bg: #1d2127;
+    --code-fg: #e6e9ee;
+    --code-hl: #33301c;
+    --accent: #6ba4ff;
+    --warn-bg: #2b2413;
+    --warn-border: #8a6d1f;
+    --note-bg: #172232;
+    --note-border: #3c6294;
+    --tip-bg: #16241c;
+    --tip-border: #3d7a57;
+    --mark-bg: #5c5220;
+    --kbd-bg: #22272e;
+    --kbd-shadow: #0c0e11;
+    --diff-add-bg: #122a1c;
+    --diff-add-word: #26562f;
+    --diff-add-fg: #6cc487;
+    --diff-del-bg: #2b1618;
+    --diff-del-word: #5c2429;
+    --diff-del-fg: #ef8d86;
+    --diff-gap-bg: #191c21;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 2.5rem 1.25rem 5rem;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+main { max-width: 42rem; margin: 0 auto; }
+
+/* ---------- headings ---------- */
+h1 { font-size: 1.9rem; line-height: 1.25; margin: 0 0 .35em; letter-spacing: -.015em; }
+h2 {
+  font-size: 1.3rem; margin: 2.4em 0 .6em; padding-bottom: .3em;
+  border-bottom: 1px solid var(--rule); letter-spacing: -.01em;
+}
+h3 { font-size: 1.05rem; margin: 2em 0 .5em; letter-spacing: -.005em; }
+h4 {
+  font-size: .82rem; margin: 1.8em 0 .5em; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .06em;
+}
+
+/* ---------- text ---------- */
+p { margin: 0 0 1em; }
+.lede { color: var(--muted); font-size: 1.05rem; margin-bottom: 2em; }
+a { color: var(--accent); }
+strong { font-weight: 650; }
+em { font-style: italic; }
+del { color: var(--faint); }
+mark { background: var(--mark-bg); color: inherit; padding: .05em .2em; border-radius: 3px; }
+abbr[title] { text-decoration: underline dotted; text-underline-offset: .2em; cursor: help; }
+small { font-size: .85em; color: var(--muted); }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5em 0; }
+sup a { text-decoration: none; font-size: .75em; padding: 0 .1em; }
+
+kbd {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .78em; line-height: 1;
+  background: var(--kbd-bg);
+  border: 1px solid var(--rule);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  padding: .25em .45em;
+  box-shadow: 0 1px 0 var(--kbd-shadow);
+  white-space: nowrap;
+}
+
+/* ---------- lists ---------- */
+ul, ol { margin: 0 0 1em; padding-left: 1.3em; }
+li { margin-bottom: .4em; }
+li > ul, li > ol { margin-top: .4em; margin-bottom: .2em; }
+ol li { margin-bottom: .55em; }
+ul.plain { list-style: none; padding-left: 0; }
+ul.plain li { display: flex; gap: .6em; align-items: baseline; }
+ul.plain .tick { color: var(--tip-border); font-weight: 700; }
+
+dl { margin: 0 0 1.2em; }
+dt { font-weight: 650; margin-top: .9em; }
+dt:first-child { margin-top: 0; }
+dd { margin: .2em 0 0 0; padding-left: 1.1em; border-left: 2px solid var(--rule); color: var(--muted); }
+
+/* ---------- quotes ---------- */
+blockquote {
+  margin: 0 0 1.3em;
+  padding: .1em 0 .1em 1.15rem;
+  border-left: 3px solid var(--rule);
+  color: var(--muted);
+  font-style: italic;
+}
+blockquote p:last-child { margin-bottom: 0; }
+blockquote cite {
+  display: block; margin-top: .6em;
+  font-style: normal; font-size: .85rem; color: var(--faint);
+}
+blockquote cite::before { content: "— "; }
+blockquote blockquote { margin-top: .8em; border-left-color: var(--faint); }
+
+/* ---------- code ---------- */
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .875em;
+  background: var(--code-bg);
+  padding: .12em .38em;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+pre {
+  background: var(--code-bg);
+  color: var(--code-fg);
+  padding: 1rem 1.1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: .84rem;
+  line-height: 1.6;
+  margin: 0 0 1.2em;
+  tab-size: 2;
+}
+/* The <pre> carries full vertical padding by default; drop it at any edge that
+   already has a hunk divider, since the divider supplies that edge's spacing.
+   The divider is a .line.hunk row inside <code> (inline) or a full-width
+   .hunk-sep sibling of the panes (side-by-side). */
+pre:has(> code > .line.hunk:first-child) { padding-top: 0; }
+pre:has(> code > .line.hunk:last-child) { padding-bottom: 0; }
+.diff-split > .hunk-sep ~ .pane pre { padding-top: 0; }
+.diff-split > .pane:has(~ .hunk-sep) pre { padding-bottom: 0; }
+pre code { background: none; padding: 0; font-size: inherit; white-space: inherit; }
+/* Make <code> a max-content block so a line's `min-width: 100%` resolves against
+   the widest line (the full scroll width) rather than the visible width. Without
+   this, a row tint or highlight on a short line stops at the visible edge and
+   reappears truncated when the block is scrolled right — most obvious in the
+   half-width panes of a split diff. */
+pre.numbered > code, pre.diff > code {
+  display: block;
+  width: max-content;
+  min-width: 100%;
+}
+
+/* code block with a filename header */
+.codeblock { margin: 0 0 1.3em; }
+/* Not scoped to .codeblock: a split diff of a renamed file puts a .filename
+   straight inside each pane, with no .codeblock wrapper to inherit from. */
+.filename {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .76rem;
+  color: var(--muted);
+  background: var(--code-bg);
+  border-bottom: 1px solid var(--rule);
+  padding: .5rem 1.1rem;
+  border-radius: 8px 8px 0 0;
+  /* Paths have no spaces, so they're one unbreakable token: on a narrow
+     viewport they'd overflow and drag the whole page sideways. Keep them on
+     one line and let the header scroll horizontally, mirroring the <pre>
+     below, instead of wrapping onto extra lines. */
+  white-space: nowrap;
+  overflow-x: auto;
+}
+.filename + pre { margin: 0; border-radius: 0 0 8px 8px; }
+.diff-split .filename { grid-column: 1 / -1; border-bottom: 0px none; }
+
+/* line-numbered code */
+pre.numbered { padding-left: .6rem; }
+pre.numbered .line {
+  display: block;
+  width: max-content;
+  min-width: 100%;
+}
+pre.numbered .line::before {
+  content: attr(data-n);
+  display: inline-block;
+  width: 2.5ch;
+  margin-right: 1.5ch;
+  padding-right: .75ch;
+  border-right: 1px solid var(--rule);
+  text-align: right;
+  color: var(--faint);
+  user-select: none;
+  -webkit-user-select: none;
+}
+pre.numbered .line.hl { background: var(--code-hl); }
+
+/* ---------- diffs ---------- */
+/* Row tints need to run edge to edge, so the horizontal padding moves from the
+   <pre> onto each line. Lines are max-content wide for the same reason as
+   pre.numbered: a tint or highlight must survive a horizontal scroll. */
+pre.diff { padding-left: 0; padding-right: 0; }
+pre.diff .line {
+  display: block;
+  position: relative;
+  width: max-content;
+  min-width: 100%;
+  padding: 0 1.1rem;
+}
+/* The +/− column is decoration, like the line numbers: copying a diff gives you
+   the code, not a patch with markers glued to every line. Move the marker into
+   the text if you'd rather copy a patch. */
+pre.diff .line::before {
+  content: "\00a0";
+  display: inline-block;
+  width: 2ch;
+  font-weight: 700;
+  user-select: none;
+  -webkit-user-select: none;
+}
+pre.diff .line.add { background: var(--diff-add-bg); }
+pre.diff .line.del { background: var(--diff-del-bg); }
+pre.diff .line.add::before { content: "+"; color: var(--diff-add-fg); }
+pre.diff .line.del::before { content: "\2212"; color: var(--diff-del-fg); }
+pre.diff .line.meta { color: var(--muted); }
+/* A hunk divider marks a jump to another region of the same file: the diff shows
+   only the changed neighbourhoods, not the untouched lines between them. Rather
+   than repeat git's @@ … @@ range, it reads as a quiet collapsed-context band —
+   gap tint, a hairline above, and a centred ⋯ — the way GitHub and GitLab do it.
+   The span itself is empty; the ⋯ is drawn in and never lands in a selection. */
+pre.diff .line.hunk {
+  color: var(--faint);
+  background: var(--diff-gap-bg);
+  border-top: 1px solid var(--rule);
+  text-align: center;
+  padding: 0 1.1rem;
+  user-select: none;
+  -webkit-user-select: none;
+}
+pre.diff .line.hunk:first-child { border-top: 0; }
+pre.diff .line.hunk::before {
+  content: "\22ef";           /* ⋯ midline horizontal ellipsis */
+  display: inline;
+  width: auto;
+  margin: 0;
+  font-weight: 400;
+  font-family: var(--ui-font); /* the proportional ⋯ reads a touch wider than the mono one */
+  font-size: 1rem;
+  line-height: 0;              /* keep the taller glyph from growing the band */
+}
+pre.diff.numbered .line.hunk { padding-left: 1.1rem; }
+/* filler row, so the two panes of a split diff stay aligned */
+pre.diff .line.gap { background: var(--diff-gap-bg); }
+
+/* Word-level change, in a code row or in a renamed path: a darker step of the
+   row's own tint, so the eye lands on the part that actually differs. Keyed off
+   the .add/.del carrier rather than off pre.diff, so a .filename can use it too. */
+.line .w, .filename .w { border-radius: 3px; padding: .05em .15em; }
+.line.add .w, .filename.add .w { background: var(--diff-add-word); }
+.line.del .w, .filename.del .w { background: var(--diff-del-word); }
+
+/* Two number columns: data-a is the old file, data-b the new. Omit whichever
+   side doesn't have the line — a blank column is itself the signal. */
+pre.diff.numbered { --gutter: 6.6ch; }
+pre.diff.numbered .line { padding-left: calc(var(--gutter) + 1ch); }
+pre.diff.numbered .ln {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: var(--gutter);
+  border-right: 1px solid var(--rule);
+  color: var(--faint);
+  user-select: none;
+  -webkit-user-select: none;
+}
+pre.diff.numbered .ln::before { content: attr(data-a); }
+pre.diff.numbered .ln::after { content: attr(data-b); margin-left: .6ch; }
+pre.diff.numbered .ln::before,
+pre.diff.numbered .ln::after {
+  display: inline-block;
+  width: 2.6ch;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- side-by-side diffs ---------- */
+.diff-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;                      /* the gap is the divider: parent bg shows through */
+  background: var(--rule);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 0 0 1.3em;
+}
+.diff-split .pane { min-width: 0; background: var(--code-bg); }
+.diff-split .pane pre { margin: 0; border-radius: 0; }
+
+/* A hunk separator spans both panes, marking where the diff skips ahead to the
+   next changed region so neither side has to carry the untouched lines between.
+   It sits on its own grid row; the 1px grid gap draws the hairlines around it. */
+.diff-split .hunk-sep {
+  grid-column: 1 / -1;
+  background: var(--diff-gap-bg);
+  color: var(--faint);
+  text-align: center;
+  font-size: .84rem;
+  line-height: 1.6;             /* same compact band height as the inline hunk divider */
+  user-select: none;
+  -webkit-user-select: none;
+}
+.diff-split .hunk-sep::before {
+  content: "\22ef";             /* ⋯, same divider as inline */
+  font-size: 1rem;
+  line-height: 0;               /* keep the taller glyph from growing the band */
+}
+
+/* Path unchanged: one header spanning both panes, sitting on the split exactly as
+   it sits on a single <pre>. The same name twice, labelled before/after, was noise. */
+.filename + .diff-split { margin: 0; border-radius: 0 0 8px 8px; }
+
+/* Path changed: the name is itself part of the change, so the two headers become a
+   del/add pair. No +/− marker here — the two paths sit side by side, so the tint
+   and the darker word tint on the changed segment already say which is which. */
+.diff-split .pane .filename { border-radius: 0; }
+.diff-split .pane .filename.del { background: var(--diff-del-bg); }
+.diff-split .pane .filename.add { background: var(--diff-add-bg); }
+/* each pane only ever shows its own side's numbers, so the gutter halves */
+.diff-split pre.diff.numbered { --gutter: 3.4ch; }
+.diff-split .pane.a .ln::after { display: none; }
+.diff-split .pane.b .ln::before { display: none; }
+.diff-split .pane.b .ln::after { margin-left: 0; }
+@media (max-width: 46rem) {
+  .diff-split { grid-template-columns: 1fr; }   /* stack, rather than scroll the page */
+}
+
+/* ---------- math ---------- */
+/* KaTeX ships at 1.21em, which overpowers 16px body copy and breaks the line rhythm. */
+.katex { font-size: 1.12em; }
+.katex-display {
+  margin: 0 0 1.3em;
+  padding: .35em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+/* Same trick as pre.numbered .line: a max-content box that never shrinks below the
+   container keeps narrow equations centred while wide ones scroll from their left edge
+   (a centred over-wide inline-block puts its left half out of scroll reach). */
+.katex-display > .katex {
+  display: inline-block;
+  width: max-content;
+  min-width: 100%;
+}
+/* numbered display equation, following the Figure 1 / Table 1 convention */
+.equation { display: flex; align-items: center; gap: 1rem; margin: 0 0 1.3em; }
+.equation .katex-display { flex: 1; min-width: 0; margin: 0; }
+.equation .eqno {
+  flex: none;
+  font-size: .82rem;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+/* throwOnError is off, so malformed TeX is shown rather than thrown */
+.katex-error { color: var(--warn-border); }
+
+/* ---------- table ---------- */
+.table-wrap { overflow-x: auto; margin: 0 0 1.4em; }
+table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: .9rem; }
+th, td { text-align: left; vertical-align: top; padding: .65rem .8rem; border-bottom: 1px solid var(--rule); }
+th { font-weight: 600; color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; }
+tbody tr:last-child td { border-bottom: 0; }
+caption { caption-side: bottom; padding-top: .7em; font-size: .82rem; color: var(--faint); text-align: left; }
+
+/* ---------- callouts (admonitions) ---------- */
+.admonition {
+  border-left: 3px solid var(--note-border);
+  background: var(--note-bg);
+  padding: .9rem 1.1rem;
+  border-radius: 0 6px 6px 0;
+  margin: 0 0 1.3em;
+}
+.admonition.warning { border-left-color: var(--warn-border); background: var(--warn-bg); }
+.admonition.tip     { border-left-color: var(--tip-border);  background: var(--tip-bg); }
+.admonition p:last-child { margin-bottom: 0; }
+.admonition .admonition-title {
+  font-size: .72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .07em;
+  color: var(--muted); margin-bottom: .35em;
+}
+
+/* ---------- misc blocks ---------- */
+details {
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: .7rem 1.1rem;
+  margin: 0 0 1.3em;
+}
+details[open] { padding-bottom: .3rem; }
+summary { cursor: pointer; font-weight: 600; }
+summary::marker { color: var(--faint); }
+details > *:not(summary) { margin-top: .9em; }
+
+figure { margin: 0 0 1.4em; }
+figure svg { display: block; max-width: 100%; height: auto; }
+figcaption { margin-top: .6em; font-size: .82rem; color: var(--faint); }
+
+.footnotes { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); font-size: .87rem; color: var(--muted); }
+.footnotes ol { padding-left: 1.2em; }
+.footnotes li { margin-bottom: .35em; }
+
+footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .85rem; }

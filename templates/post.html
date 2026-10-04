@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+{{ content }}
+</main>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<script>
+  // defer'd scripts run before DOMContentLoaded, so renderMathInElement is ready here.
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof renderMathInElement !== 'function') return;  // offline: leave the TeX source visible
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$',  right: '$$',  display: true  },
+        { left: '\\[', right: '\\]', display: true  },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false },
+      ],
+      ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'kbd', 'option'],
+      throwOnError: false,
+    });
+  });
+</script>
+
+</body></html>
