@@ -1,0 +1,95 @@
+/* Overview page. Builds on style.css (colours, fonts, base layout) and only
+   adds what the index needs; everything is scoped under body.index so none of
+   it leaks into the posts. */
+
+body.index { padding-top: 6rem; padding-bottom: 8rem; }
+
+/* ---------- header ---------- */
+.index .site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 5.5rem;
+}
+.index .site-name {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+.index .social { display: flex; gap: 1.1rem; }
+.index .social a {
+  display: block;
+  color: var(--faint);
+  transition: color .15s ease;
+}
+.index .social a:hover,
+.index .social a:focus-visible { color: var(--fg); }
+.index .social svg { display: block; width: 1.05rem; height: 1.05rem; fill: currentColor; }
+
+/* ---------- post list ---------- */
+/* Each year is a two-column row: the year sits in a narrow left gutter, its
+   posts run down the right. On narrow screens the year moves above the list. */
+.index .year {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  align-items: baseline;
+  padding: 1.6rem 0;
+  border-top: 1px solid var(--rule);
+}
+.index .year:first-child { border-top: 0; padding-top: 0; }
+
+.index .year h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: .9rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.index .year ol { list-style: none; margin: 0; padding: 0; }
+.index .year li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin: 0;
+  padding: .4rem 0;
+}
+.index .year li:first-child { padding-top: 0; }
+
+.index .year a {
+  color: var(--fg);
+  text-decoration: none;
+  transition: opacity .15s ease;
+}
+.index .year a:hover,
+.index .year a:focus-visible {
+  text-decoration: underline;
+  text-decoration-color: var(--faint);
+  text-decoration-thickness: 1px;
+  text-underline-offset: .25em;
+}
+
+.index .year time {
+  flex: none;
+  font-size: .85rem;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* While the pointer is over the list, quiet the titles it isn't on. */
+@media (hover: hover) {
+  .index .archive:has(a:hover) a:not(:hover) { opacity: .45; }
+}
+
+@media (max-width: 34rem) {
+  body.index { padding-top: 3.5rem; }
+  .index .site-header { margin-bottom: 3.5rem; }
+  .index .year { grid-template-columns: 1fr; row-gap: .8rem; }
+}

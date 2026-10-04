@@ -31,7 +31,7 @@ EXTENSIONS = [
 env = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATES_FOLDER))
 
 
-def build(file):
+def build(file, front_matters):
     name = os.path.splitext(os.path.basename(file))[0]
 
     with open(file, 'r') as f:
@@ -39,6 +39,7 @@ def build(file):
 
     # extract front matter
     front_matter, idx = json.JSONDecoder().raw_decode(input)
+    front_matters.append(front_matter)
     source = input[idx:].lstrip('\n')
 
     # hide math from Markdown so it doesn't mangle backslash escapes, `_`, `*`, etc.
@@ -60,10 +61,17 @@ def build(file):
 
 
 def main():
+    front_matters = []
     # build HTML for articles
     for entry in os.scandir(CONTENT_FOLDER):
         # if entry.is_dir() and entry.name not in EXCLUDED_FOLDERS:
-        build(entry.path)
+        build(entry.path, front_matters)
+
+    # create the index
+    template = env.get_template(POST_TEMPLATE)
+    result = template.render(front_matters=front_matters)
+    with open(os.path.join(BUILD_FOLDER, 'index.html'), 'w') as f:
+        f.write(result)
 
     # copy the assets to the build folder
     shutil.copytree(ASSETS_FOLDER, BUILD_FOLDER, dirs_exist_ok=True)
