@@ -6,6 +6,7 @@ import jinja2
 import json
 
 from postprocess import postprocess
+from mathprotect import protect_math, restore_math
 
 
 BUILD_FOLDER = './build'
@@ -40,10 +41,14 @@ def build(file):
     front_matter, idx = json.JSONDecoder().raw_decode(input)
     source = input[idx:].lstrip('\n')
 
+    # hide math from Markdown so it doesn't mangle backslash escapes, `_`, `*`, etc.
+    source, math = protect_math(source)
+
     # hack to allow lists without a leading empty line
     source = re.sub(r'(?m)^([^\n`].*)\n(?=- )', r'\1\n\n', source)
 
     content = markdown.markdown(source, extensions=EXTENSIONS)
+    content = restore_math(content, math)
     content = postprocess(content, front_matter)
 
     template = env.get_template(POST_TEMPLATE)
