@@ -47,7 +47,7 @@ def build(file, front_matters):
     source = input[idx:].lstrip('\n')
 
     # hack to allow lists without a leading empty line
-    source = re.sub(r'(?m)^([^\n`].*)\n(?=- )', r'\1\n\n', source)
+    source = re.sub(r'(?m)^([^\n`].*)\n(?=- |\d+\. )', r'\1\n\n', source)
 
     content = markdown.markdown(source, extensions=EXTENSIONS)
     content = postprocess(content, front_matter)
