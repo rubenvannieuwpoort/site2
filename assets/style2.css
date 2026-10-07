@@ -2,7 +2,7 @@
    adds what the index needs; everything is scoped under body.index so none of
    it leaks into the posts. */
 
-body.index { padding-top: 6rem; padding-bottom: 8rem; }
+body.index { padding-bottom: 8rem; }
 
 /* ---------- header ---------- */
 .index .site-header {
