@@ -70,12 +70,12 @@ With a filename header, when the reader needs to know where the code lives:
 
 <div class="codeblock">
   <div class="filename">api/modules/journals/repositories/JournalRepository.php</div>
-  <pre><code>$userId = AuthenticationService::getInstance()-&gt;getUserId();
+  <pre><code>$userId = AuthenticationService::getInstance()->getUserId();
 $now = TimePoint::now();
 
-if (!$journal-&gt;hasId()) {
-    $map-&gt;put('created_at', $now);
-    $map-&gt;put('created_by_user_id', $userId);
+if (!$journal->hasId()) {
+    $map->put('created_at', $now);
+    $map->put('created_by_user_id', $userId);
 }</code></pre>
 </div>
 
@@ -86,7 +86,7 @@ Line numbers are generated from a `data-n` attribute and rendered through `::bef
 
 <div class="codeblock">
   <div class="filename">src/modules/advanced/common/hooks/useSaveBankbook.ts</div>
-  <pre class="numbered"><code><span class="line" data-n="1">import useAdministrationApiUrl from '../../../hooks/useAdministrationApiUrl';</span><span class="line" data-n="2">import useSaveAggregate from '../../../redux/hooks/useSaveAggregate';</span><span class="line" data-n="3">import JournalV1 from '../../../models/Journal';</span><span class="line" data-n="4"></span><span class="line" data-n="5">interface Data {</span><span class="line" data-n="6">  name?: string;</span><span class="line" data-n="7">  is_in_use?: boolean;</span><span class="line" data-n="8">}</span><span class="line" data-n="9"></span><span class="line" data-n="10">export default function useSaveBankbook(bankbookId: number | undefined) {</span><span class="line" data-n="11">  const url = `${useAdministrationApiUrl()}/bankbooks/${bankbookId}`;</span><span class="line" data-n="12"></span><span class="line hl" data-n="13">  // No apiVersion: this must stay on the v1 (PHP) API, not the Kotlin backend.</span><span class="line" data-n="14">  return useSaveAggregate&lt;JournalV1&gt;(url);</span><span class="line" data-n="15">}</span></code></pre>
+  <pre class="numbered"><code><span class="line" data-n="1">import useAdministrationApiUrl from '../../../hooks/useAdministrationApiUrl';</span><span class="line" data-n="2">import useSaveAggregate from '../../../redux/hooks/useSaveAggregate';</span><span class="line" data-n="3">import JournalV1 from '../../../models/Journal';</span><span class="line" data-n="4"></span><span class="line" data-n="5">interface Data {</span><span class="line" data-n="6">  name?: string;</span><span class="line" data-n="7">  is_in_use?: boolean;</span><span class="line" data-n="8">}</span><span class="line" data-n="9"></span><span class="line" data-n="10">export default function useSaveBankbook(bankbookId: number | undefined) {</span><span class="line" data-n="11">  const url = `${useAdministrationApiUrl()}/bankbooks/${bankbookId}`;</span><span class="line" data-n="12"></span><span class="line hl" data-n="13">  // No apiVersion: this must stay on the v1 (PHP) API, not the Kotlin backend.</span><span class="line" data-n="14">  return useSaveAggregate<JournalV1>(url);</span><span class="line" data-n="15">}</span></code></pre>
 </div>
 
 Long lines scroll horizontally inside the block rather than wrapping, and the highlight extends the full scroll width -- so a marked line stays marked even when you scroll right.
@@ -103,7 +103,7 @@ Two gutter columns, from `data-a` (the old file) and `data-b` (the new one). An 
 
 <div class="codeblock">
   <div class="filename">src/modules/advanced/common/hooks/useSaveBankbook.ts</div>
-  <pre class="diff numbered"><code><span class="line"><span class="ln" data-a="1" data-b="1"></span>import useSaveAggregate from '../../../redux/hooks/useSaveAggregate';</span><span class="line"><span class="ln" data-a="2" data-b="2"></span></span><span class="line del"><span class="ln" data-a="3"></span>export default function useSaveBankbook(bankbookId: <span class="w">number</span>) {</span><span class="line add"><span class="ln" data-b="3"></span>export default function useSaveBankbook(bankbookId: <span class="w">number | undefined</span>) {</span><span class="line"><span class="ln" data-a="4" data-b="4"></span>  const url = `${useAdministrationApiUrl()}/bankbooks/${bankbookId}`;</span><span class="line add"><span class="ln" data-b="5"></span></span><span class="line"><span class="ln" data-a="5" data-b="6"></span>  return useSaveAggregate&lt;JournalV1&gt;(url);</span><span class="line"><span class="ln" data-a="6" data-b="7"></span>}</span><span class="line hunk"></span></code></pre>
+  <pre class="diff numbered"><code><span class="line"><span class="ln" data-a="1" data-b="1"></span>import useSaveAggregate from '../../../redux/hooks/useSaveAggregate';</span><span class="line"><span class="ln" data-a="2" data-b="2"></span></span><span class="line del"><span class="ln" data-a="3"></span>export default function useSaveBankbook(bankbookId: <span class="w">number</span>) {</span><span class="line add"><span class="ln" data-b="3"></span>export default function useSaveBankbook(bankbookId: <span class="w">number | undefined</span>) {</span><span class="line"><span class="ln" data-a="4" data-b="4"></span>  const url = `${useAdministrationApiUrl()}/bankbooks/${bankbookId}`;</span><span class="line add"><span class="ln" data-b="5"></span></span><span class="line"><span class="ln" data-a="5" data-b="6"></span>  return useSaveAggregate<JournalV1>(url);</span><span class="line"><span class="ln" data-a="6" data-b="7"></span>}</span><span class="line hunk"></span></code></pre>
 </div>
 
 
@@ -216,17 +216,17 @@ echo "pid $$ — untouched $by$ \(the\) renderer"
   </thead>
   <tbody>
     <tr>
-      <td><code>&lt;blockquote&gt;</code></td>
+      <td><code><blockquote></code></td>
       <td>Quoted material</td>
-      <td>Italic, muted, hairline rule; <code>&lt;cite&gt;</code> renders with an em-dash prefix</td>
+      <td>Italic, muted, hairline rule; <code><cite></code> renders with an em-dash prefix</td>
     </tr>
     <tr>
-      <td><code>&lt;pre class="numbered"&gt;</code></td>
+      <td><code><pre class="numbered"></code></td>
       <td>Code with line numbers</td>
       <td>Numbers come from <code>data-n</code>, excluded from selection</td>
     </tr>
     <tr>
-      <td><code>&lt;dl&gt;</code></td>
+      <td><code><dl></code></td>
       <td>Term / definition pairs</td>
       <td>Definitions indent behind a left rule</td>
     </tr>
@@ -236,7 +236,7 @@ echo "pid $$ — untouched $by$ \(the\) renderer"
       <td>Three variants; the label is optional</td>
     </tr>
     <tr>
-      <td><code>&lt;pre class="diff"&gt;</code></td>
+      <td><code><pre class="diff"></code></td>
       <td>Unified diff</td>
       <td>Tints from <code>.add</code> / <code>.del</code>; markers excluded from selection</td>
     </tr>

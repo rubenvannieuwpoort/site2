@@ -41,7 +41,7 @@ $$ \phi = \frac{1 + \sqrt{5}}{2} $$
 
 is the best choice for $x$ (i.e. gives the lowest discrepancy).
 
-Most explanations simply state that the golden ratio $\phi$ is "the most irrational number$. In this article I try to give some quantitative results and give a little more context.
+Most explanations simply state that the golden ratio $\phi$ is "the most irrational number". In this article I try to give some quantitative results and give a little more context.
 
 The discrepancy is not an easy measure to work with. Instead, I will investigate the distance between points (I'll often informally refer to this as "gap").
 

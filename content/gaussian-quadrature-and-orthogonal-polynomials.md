@@ -96,7 +96,7 @@ $$ p(x) = \sum_{k = 0}^n \left< p, p_k \right> p_k(x) $$
 **Proof**: Since $p_0, p_1, ..., p_n$ is a basis of $\mathbb{P}_n$ and $p \in \mathbb{P}_n$, we can write $p$ as $p(x) = \sum_{k = 0}^n c_k p_k(x)$ for some $c_0, c_1, ..., c_n \in \mathbb{R}$. Taking the inner product of $p$ and $p_k$, we see
 $$ \left< p, p_k \right> = \left< \sum_{j = 0}^n c_j p_j, p_k \right> = \sum_{j = 0}^n c_j \left< p_j, p_k \right> = c_k $$
 
-So $c_k = \left< p, p_k \right>$. Substituting this in $p(x) = \sum_{k = 0}^n c_k p_k(x) gives the required result.
+So $c_k = \left< p, p_k \right>$. Substituting this in $p(x) = \sum_{k = 0}^n c_k p_k(x)$ gives the required result.
 
 $\square$
 
