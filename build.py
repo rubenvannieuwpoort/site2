@@ -6,7 +6,7 @@ import jinja2
 import json
 
 from postprocess import postprocess
-from mathprotect import protect_math, restore_math
+from katexmath import KatexMathExtension
 
 
 BUILD_FOLDER = './build'
@@ -26,6 +26,7 @@ EXTENSIONS = [
     "sane_lists",           # https://python-markdown.github.io/extensions/sane_lists
     "smarty",               # https://python-markdown.github.io/extensions/smarty
     "admonition",           # https://python-markdown.github.io/extensions/admonition
+    KatexMathExtension(),   # katexmath.py: renders $...$, \(...\), $$...$$ and \[...\] with KaTeX
 ]
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATES_FOLDER))
@@ -42,14 +43,10 @@ def build(file, front_matters):
     front_matters.append(front_matter)
     source = input[idx:].lstrip('\n')
 
-    # hide math from Markdown so it doesn't mangle backslash escapes, `_`, `*`, etc.
-    source, math = protect_math(source)
-
     # hack to allow lists without a leading empty line
     source = re.sub(r'(?m)^([^\n`].*)\n(?=- )', r'\1\n\n', source)
 
     content = markdown.markdown(source, extensions=EXTENSIONS)
-    content = restore_math(content, math)
     content = postprocess(content, front_matter)
 
     template = env.get_template(POST_TEMPLATE)
