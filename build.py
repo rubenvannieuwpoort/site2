@@ -16,7 +16,8 @@ ASSETS_FOLDER = './assets'
 
 # EXCLUDED_FOLDERS = ['templates', '.git', '.venv', 'build', '__pycache__']
 
-POST_TEMPLATE = "post.html"
+POST_TEMPLATE = 'post.html'
+INDEX_TEMPLATE = 'index.html'
 
 EXTENSIONS = [
     "def_list",             # https://python-markdown.github.io/extensions/definition_lists
@@ -33,13 +34,15 @@ env = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATES_FOLDER))
 
 
 def build(file, front_matters):
-    name = os.path.splitext(os.path.basename(file))[0]
+    filename = os.path.splitext(os.path.basename(file))[0]
 
     with open(file, 'r') as f:
         input = f.read()
 
     # extract front matter
     front_matter, idx = json.JSONDecoder().raw_decode(input)
+    front_matter['link'] = f'posts/{filename}'
+
     front_matters.append(front_matter)
     source = input[idx:].lstrip('\n')
 
@@ -52,8 +55,8 @@ def build(file, front_matters):
     template = env.get_template(POST_TEMPLATE)
     result = template.render(content = content, **front_matter)
 
-    os.makedirs(BUILD_FOLDER, exist_ok=True)
-    with open(os.path.join(BUILD_FOLDER, f'{name}.html'), 'w') as f:
+    os.makedirs(os.path.join(BUILD_FOLDER, 'posts'), exist_ok=True)
+    with open(os.path.join(BUILD_FOLDER, f'posts/{filename}.html'), 'w') as f:
         f.write(result)
 
 
@@ -62,17 +65,25 @@ def main():
     # build HTML for articles
     for entry in os.scandir(CONTENT_FOLDER):
         # if entry.is_dir() and entry.name not in EXCLUDED_FOLDERS:
-        build(entry.path, front_matters)
+        try:
+            build(entry.path, front_matters)
+        except:
+            raise Exception(f'during processing of {entry.name}')
 
     # create the index
-    template = env.get_template(POST_TEMPLATE)
-    result = template.render(front_matters=front_matters)
+    template = env.get_template(INDEX_TEMPLATE)
+
+    front_matters.sort(key=lambda fm: fm['date'], reverse=True)
+    years = list(reversed(range(int(front_matters[-1]['date'][:4]), int(front_matters[0]['date'][:4]) + 1)))
+    front_matters_per_year = {year: [] for year in years}
+    [front_matters_per_year[int(fm['date'][:4])].append(fm) for fm in front_matters]
+
+    result = template.render(years=years, front_matters_per_year=front_matters_per_year)
     with open(os.path.join(BUILD_FOLDER, 'index.html'), 'w') as f:
         f.write(result)
 
     # copy the assets to the build folder
     shutil.copytree(ASSETS_FOLDER, BUILD_FOLDER, dirs_exist_ok=True)
-    
 
 
 if __name__ == '__main__':
