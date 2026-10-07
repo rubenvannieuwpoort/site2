@@ -33,6 +33,24 @@ EXTENSIONS = [
 env = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATES_FOLDER))
 
 
+LIST_ITEM = re.compile(r'- |\d+\. ')
+
+# hack to allow lists without a leading empty line: insert one before the first
+# item of a list, but not between items (that would make the list loose)
+def add_blank_lines_before_lists(source):
+    lines = []
+    in_list = False
+    for line in source.split('\n'):
+        if LIST_ITEM.match(line):
+            if not in_list and lines and lines[-1] and not lines[-1].startswith('`'):
+                lines.append('')
+            in_list = True
+        elif not line:
+            in_list = False
+        lines.append(line)
+    return '\n'.join(lines)
+
+
 def build(file, front_matters):
     filename = os.path.splitext(os.path.basename(file))[0]
 
@@ -46,8 +64,7 @@ def build(file, front_matters):
     front_matters.append(front_matter)
     source = input[idx:].lstrip('\n')
 
-    # hack to allow lists without a leading empty line
-    source = re.sub(r'(?m)^([^\n`].*)\n(?=- |\d+\. )', r'\1\n\n', source)
+    source = add_blank_lines_before_lists(source)
 
     content = markdown.markdown(source, extensions=EXTENSIONS)
     content = postprocess(content, front_matter)
