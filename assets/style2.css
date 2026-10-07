@@ -5,28 +5,8 @@
 body.index { padding-bottom: 8rem; }
 
 /* ---------- header ---------- */
-.index .site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  margin-bottom: 5.5rem;
-}
-.index .site-name {
-  margin: 0;
-  font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: -.01em;
-}
-.index .social { display: flex; gap: 1.1rem; }
-.index .social a {
-  display: block;
-  color: var(--faint);
-  transition: color .15s ease;
-}
-.index .social a:hover,
-.index .social a:focus-visible { color: var(--fg); }
-.index .social svg { display: block; width: 1.05rem; height: 1.05rem; fill: currentColor; }
+/* Base header styles live in style.css; the index just gives it more room. */
+.index .site-header { margin-bottom: 5.5rem; }
 
 /* ---------- post list ---------- */
 /* Each year is a two-column row: the year sits in a narrow left gutter, its
