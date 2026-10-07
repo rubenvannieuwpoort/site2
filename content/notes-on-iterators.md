@@ -1,9 +1,9 @@
 {
     "title": "Notes on iterators",
-    "date": "2025-06-10",
-    "show": true
+    "date": "2025-06-10"
 }
 
+# Notes on iterators
 
 There are two common ways to implement iteration in imperative programming languages: internal or push iterators, and external or pull iterators. In this article I discuss the details and tradeoffs between them.
 

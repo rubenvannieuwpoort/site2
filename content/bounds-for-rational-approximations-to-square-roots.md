@@ -1,8 +1,6 @@
 {
     "title": "Bounds for rational approximations to square roots",
-    "description": "I give a bound for rational approximations to square roots.",
-    "date": "2022-02-06",
-    "show": true
+    "date": "2022-02-06"
 }
 
 # Bounds for rational approximations to square roots

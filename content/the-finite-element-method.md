@@ -1,10 +1,9 @@
 {
     "title": "The finite element method",
-    "description": "The finite element method is an elegant mathematical method to numerically solve partial differential equations. In this article, I give a short introduction.",
-    "date": "2019-05-03",
-    "show": true
+    "date": "2019-05-03"
 }
 
+# The finite element method
 
 This is an edited section from my thesis "[Solving Poisson’s equation with Dataflow computing](http://resolver.tudelft.nl/uuid:c5dfd1d4-6494-47e9-90d9-486d2a7b26b3)". It might be a bit more formal than most of my other posts.
 

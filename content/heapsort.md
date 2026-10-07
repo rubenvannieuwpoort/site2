@@ -1,7 +1,6 @@
 {
     "title": "Heapsort",
-    "date": "2021-01-20",
-    "show": true
+    "date": "2021-01-20"
 }
 
 # Heapsort

@@ -1,7 +1,6 @@
 {
     "title": "Bernoulli numbers",
-    "date": "2023-04-15",
-    "show": true
+    "date": "2023-04-15"
 }
 
 # Bernoulli numbers

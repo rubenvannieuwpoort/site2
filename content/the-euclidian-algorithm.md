@@ -1,9 +1,9 @@
 {
     "title": "The Euclidian algorithm",
-    "date": "2019-07-04",
-    "show": true
+    "date": "2019-07-04"
 }
 
+# The Euclidian algorithm
 
 The Euclidian algorithm is a simple algorithm to compute the greatest common divisor (or simply *gcd*) of two numbers. While the Euclidian algorithm is very simple, it is also very efficient.
 

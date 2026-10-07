@@ -1,8 +1,6 @@
 {
     "title": "Alpha compositing",
-    "description": "I derive the composition equation.",
-    "date": "2023-02-15",
-    "show": true
+    "date": "2023-02-15"
 }
 
 # Alpha compositing

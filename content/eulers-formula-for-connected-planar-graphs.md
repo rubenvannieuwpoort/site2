@@ -1,7 +1,6 @@
 {
     "title": "Euler’s formula for connected planar graphs",
-    "date": "2019-12-12",
-    "show": true
+    "date": "2019-12-12"
 }
 
 # Euler’s formula for connected planar graphs

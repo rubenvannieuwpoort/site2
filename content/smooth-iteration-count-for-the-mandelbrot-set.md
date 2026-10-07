@@ -1,10 +1,9 @@
 {
     "title": "Smooth iteration count for the Mandelbrot set",
-    "description": "The Mandelbrot set is a famous fractal. The naive way to color it uses an integer (the number of iterations). However, there is a way to obtain a smoothed version of the iteration count. In this article, I show how it can be derived.",
-    "date": "2019-05-15",
-    "show": true
+    "date": "2019-05-15"
 }
 
+# Smooth iteration count for the Mandelbrot set
 
 The exterior of the Mandelbrot set is usually colored by using the number of iterations. As the number of iterations is a discrete quantity, this leads to the occurrence of banding in the coloring. In this article, I will derive a formula for a fractional iteration count. This is by no means novel; plenty of derivations can be found on the internet. However, I found most derivations to be fairly hard to follow, and hope that my explanation may be helpful to at least some people.
 ![Comparison of the classical iteration count with the smooth iteration count](images/comparison.png)

@@ -1,10 +1,10 @@
 {
     "title": "The spectral theorem for Hermitian matrices",
     "description": "This article proves some pleasing properties of Hermitian matrices, and uses them to prove that Hermitian matrices can be diagonalized in a specific form.",
-    "date": "2019-04-10",
-    "show": true
+    "date": "2019-04-10"
 }
 
+# The spectral theorem for Hermitian matrices
 
 A [spectral theorem](https://en.wikipedia.org/wiki/Spectral_theorem) is a theorem about the diagonalization of a matrix or linear operator. A matrix is [diagonalizable](https://en.wikipedia.org/wiki/Diagonalizable_matrix#Definition) if it can be written in the form $MDM^{-1}$ where $D$ is a diagonal matrix. In this article, I will explain what a Hermitian matrix is, derive some properties, and use them to prove a spectral theorem for Hermitian matrices.
 

@@ -1,8 +1,6 @@
 {
     "title": "A first look at QuickJS",
-    "description": "QuickJS is, in the words of its author, a small and embeddable Javascript engine. It provides a C API that can be used to run Javascript from C code and vice versa. Like many of Fabrice Bellard's projects, the project is very impressive. However, there is barely any documentation of the C API. In this post, I show some examples to get you started.",
-    "date": "2025-08-25",
-    "show": true
+    "date": "2025-08-25"
 }
 
 # A first look at QuickJS

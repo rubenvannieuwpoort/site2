@@ -1,9 +1,9 @@
 {
     "title": "The extended Euclidian algorithm",
-    "date": "2020-04-05",
-    "show": true
+    "date": "2020-04-05"
 }
 
+# The extended Euclidian algorithm
 
 The extended Euclidian algorithm is based on the Euclidian algorithm, which finds the greatest common divisor of two numbers $a, b$. The extended Euclidian algorithm also does some bookkeeping, which allows it to express the greatest common divisor as a linear combination of $a$ and $b$. For example, if we run the Euclidian algorithm for $a = 112, b = 42$, we find that $\gcd(112, 42) = 14$. Now, running the Euclidian algorithm tells us that $\gcd(112, 42) = 14$ and additionally tells us that $14 = -1 \cdot 112 + 3 \cdot 42$.
 

@@ -1,8 +1,6 @@
 {
     "title": "Generating multimedia from Python",
-    "description": "Generating images and video from Python using Pycairo and OpenCV.",
-    "date": "2025-03-23",
-    "show": true
+    "date": "2025-03-23"
 }
 
 # Generating multimedia from Python

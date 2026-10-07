@@ -1,7 +1,6 @@
 {
     "title": "Using systemd services",
-    "date": "2025-10-08",
-    "show": true
+    "date": "2025-10-08"
 }
 
 # Using systemd services

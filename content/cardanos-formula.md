@@ -1,8 +1,6 @@
 {
     "title": "Cardano’s formula",
-    "description": "In this article, I'll explain Cardano's formula for finding the roots of a polynomial of degree three.",
-    "date": "2019-05-20",
-    "show": true
+    "date": "2019-05-20"
 }
 
 # Cardano’s formula

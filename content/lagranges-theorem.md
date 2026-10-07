@@ -1,9 +1,9 @@
 {
     "title": "Lagrange’s theorem",
-    "date": "2020-10-11",
-    "show": true
+    "date": "2020-10-11"
 }
 
+# Lagrange’s theorem
 
 Lagrange’s theorem is a useful theorem in group and number theory. I will state and prove Lagrange’s theorem, and use it to prove Euler’s theorem.
 

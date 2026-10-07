@@ -1,8 +1,6 @@
 {
     "title": "Designing a pipelined processor",
-    "description": "I lay down a template which can be used in the design of a pipelined processor.",
-    "date": "2022-05-06",
-    "show": true
+    "date": "2022-05-06"
 }
 
 # Designing a pipelined processor

@@ -1,8 +1,6 @@
 {
     "title": "Computing decimal digits of square roots",
-    "description": "I show how to manually compute decimal digits of square roots.",
-    "date": "2023-01-23",
-    "show": true
+    "date": "2023-01-23"
 }
 
 # Computing decimal digits of square roots

@@ -1,8 +1,6 @@
 {
     "title": "Calculating the Fibonacci numbers",
-    "description": "I optimize the computation of the nth Fibonacci number in Python.",
-    "date": "2023-02-03",
-    "show": true
+    "date": "2023-02-03"
 }
 
 # Calculating the Fibonacci numbers

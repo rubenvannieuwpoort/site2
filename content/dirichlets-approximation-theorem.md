@@ -1,8 +1,6 @@
 {
     "title": "Dirichlet's approximation theorem",
-    "description": "I prove Dirichlet's approximation theorem.",
-    "date": "2023-01-25",
-    "show": true
+    "date": "2023-01-25"
 }
 
 # Dirichlet's approximation theorem

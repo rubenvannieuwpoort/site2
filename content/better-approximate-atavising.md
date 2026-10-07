@@ -1,7 +1,6 @@
 {
     "title": "Better approximate atavising",
-    "date": "2025-03-24",
-    "show": true
+    "date": "2025-03-24"
 }
 
 # Better approximate atavising

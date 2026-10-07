@@ -1,8 +1,6 @@
 {
     "title": "B-splines",
-    "description": "Splines, or piecewise polynomial functions, are a convenient way to define smooth functions. In this article I introduce some theory behind them.",
-    "date": "2019-04-11",
-    "show": true
+    "date": "2019-04-11"
 }
 
 # B-splines

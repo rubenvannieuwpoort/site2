@@ -1,8 +1,6 @@
 {
     "title": "Gaussian quadrature and orthogonal polynomials",
-    "description": "I show how orthogonal polynomials can be used to compute quadrature rules.",
-    "date": "2023-01-23",
-    "show": true
+    "date": "2023-01-23"
 }
 
 # Gaussian quadrature and orthogonal polynomials

@@ -1,10 +1,9 @@
 {
     "title": "The Euler-Lagrange equation",
-    "description": "The Euler-Lagrange equation is an important equation which is useful when you try to find a extrema of functionals, which are mappings from functions to the real numbers. In this article I show a derivation and some applications.",
-    "date": "2019-04-02",
-    "show": true
+    "date": "2019-04-02"
 }
 
+# The Euler-Lagrange equation
 
 In this article, I’ll prove the *Euler-Lagrange equation* and give some examples of applications. I’ll use some other theorems without proof: Fermat’s theorem, the fundamental lemma of the calculus of variations, the multivariate chain rule, and integrations by parts.
 

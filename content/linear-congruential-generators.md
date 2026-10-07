@@ -1,10 +1,9 @@
 {
     "title": "Linear congruential generators",
-    "description": "Linear congruential generators are a quick-and-dirty way to generate pseudorandom numbers.",
-    "date": "2022-03-13",
-    "show": true
+    "date": "2022-03-13"
 }
 
+# Linear congruential generators
 
 A linear congruential generator (LCG) is a type of non-cryptographic pseudo-random number generator (PRNG) that is simple enough to implement one in minutes.
 

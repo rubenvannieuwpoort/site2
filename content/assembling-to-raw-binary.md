@@ -1,7 +1,6 @@
 {
     "title": "Assembling to raw binary",
-    "date": "2025-10-31",
-    "show": true
+    "date": "2025-10-31"
 }
 
 # Assembling to raw binary

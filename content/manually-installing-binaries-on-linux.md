@@ -1,9 +1,9 @@
 {
     "title": "Manually installing binaries on Linux",
-    "date": "2025-08-10",
-    "show": true
+    "date": "2025-08-10"
 }
 
+# Manually installing binaries on Linux
 
 I have often run into situations where I want to manually install a binary on a Linux system. I don't do this often enough to recall the specific details, so I am documenting the process here as a reference for myself.
 

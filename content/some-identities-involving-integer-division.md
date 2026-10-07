@@ -1,10 +1,9 @@
 {
     "title": "Some identities involving integer division",
-    "description": "Writing other articles, I have worked out quite some identities involving integer division, and I decided to write them down.",
-    "date": "2025-04-12",
-    "show": true
+    "date": "2025-04-12"
 }
 
+# Some identities involving integer division
 
 I have worked out quite some identities involving integer division while writing other articles, and I decided to write them down for reference.
 

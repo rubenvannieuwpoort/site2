@@ -1,8 +1,6 @@
 {
     "title": "Division by constant integers",
-    "description": "Most modern processors have an integer divide instruction which is relatively slow compared to the other arithmetic operations. When the divisor is known at compile-time or the same divisor is used for many divisions, it is possible to transform the single division to a series of instructions which execute faster. Most compilers will optimize divisions in this way. In this article, I give an overview of the existing techniques for unsigned integers.",
-    "date": "2025-04-07",
-    "show": true
+    "date": "2025-04-07"
 }
 
 # Division by constant integers

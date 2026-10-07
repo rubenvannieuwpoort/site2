@@ -1,10 +1,9 @@
 {
     "title": "Solving the maximum subarray problem with prefix sums",
-    "description": "I show how the maximum subarray problem can easily be solved using prefix sums.",
-    "date": "2022-02-06",
-    "show": true
+    "date": "2022-02-06"
 }
 
+# Solving the maximum subarray problem with prefix sums
 
 **Definition**: *Given a sequence $x_0, x_1, ..., x_{N - 1}$, a **subarray** of this sequence is a (possibly empty) subset of contiguous elements*
 $$ x_a, x_{a + 1}, ..., x_{b - 1} $$

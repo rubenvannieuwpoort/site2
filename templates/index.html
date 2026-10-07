@@ -3,8 +3,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ruben van Nieuwpoort</title>
 <meta name="description" content="Articles on mathematics, algorithms, and programming by Ruben van Nieuwpoort.">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="style2.css">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style2.css">
 </head>
 <body class="index">
 <main>
@@ -25,54 +25,16 @@
 </header>
 
 <div class="archive">
-
+{% for year in years %}
   <section class="year">
-    <h2>2026</h2>
+    <h2>{{ year }}</h2>
     <ol>
-      <li><a href="solving_modular_search.html">Solving &ldquo;Modular Search&rdquo;</a><time datetime="2026-02-15">Feb 15</time></li>
+      {% for fm in front_matters_per_year[year] %}
+      <li><a href={{fm.link}}>{{fm.title}}</a><time datetime={{fm.date}}>{{fm.date}}</time></li>
+      {% endfor %}
     </ol>
   </section>
-
-  <section class="year">
-    <h2>2025</h2>
-    <ol>
-      <li><a href="assembling-to-raw-binary.html">Assembling to raw binary</a><time datetime="2025-10-31">Oct 31</time></li>
-      <li><a href="using-systemd-services.html">Using systemd services</a><time datetime="2025-10-08">Oct 8</time></li>
-      <li><a href="a-first-look-at-quickjs.html">A first look at QuickJS</a><time datetime="2025-08-25">Aug 25</time></li>
-      <li><a href="manually-installing-binaries-on-linux.html">Manually installing binaries on Linux</a><time datetime="2025-08-10">Aug 10</time></li>
-      <li><a href="notes_on_backpropagation.html">Notes on backpropagation</a><time datetime="2025-07-07">Jul 7</time></li>
-      <li><a href="notes-on-iterators.html">Notes on iterators</a><time datetime="2025-06-10">Jun 10</time></li>
-      <li><a href="some-identities-involving-integer-division.html">Some identities involving integer division</a><time datetime="2025-04-12">Apr 12</time></li>
-      <li><a href="division-by-constant-integers.html">Division by constant integers</a><time datetime="2025-04-07">Apr 7</time></li>
-      <li><a href="better-approximate-atavising.html">Better approximate atavising</a><time datetime="2025-03-24">Mar 24</time></li>
-      <li><a href="generating-multimedia-from-python.html">Generating multimedia from Python</a><time datetime="2025-03-23">Mar 23</time></li>
-    </ol>
-  </section>
-
-  <section class="year">
-    <h2>2023</h2>
-    <ol>
-      <li><a href="bernoulli-numbers.html">Bernoulli numbers</a><time datetime="2023-04-15">Apr 15</time></li>
-      <li><a href="alpha-compositing.html">Alpha compositing</a><time datetime="2023-02-15">Feb 15</time></li>
-      <li><a href="calculating-the-fibonacci-numbers.html">Calculating the Fibonacci numbers</a><time datetime="2023-02-03">Feb 3</time></li>
-      <li><a href="eulers-gamma-function.html">Euler&rsquo;s gamma function</a><time datetime="2023-01-25">Jan 25</time></li>
-      <li><a href="dirichlets-approximation-theorem.html">Dirichlet&rsquo;s approximation theorem</a><time datetime="2023-01-25">Jan 25</time></li>
-      <li><a href="computing-decimal-digits-of-square-roots.html">Computing decimal digits of square roots</a><time datetime="2023-01-23">Jan 23</time></li>
-      <li><a href="gaussian-quadrature-and-orthogonal-polynomials.html">Gaussian quadrature and orthogonal polynomials</a><time datetime="2023-01-23">Jan 23</time></li>
-    </ol>
-  </section>
-
-  <section class="year">
-    <h2>2022</h2>
-    <ol>
-      <li><a href="designing-a-pipelined-processor.html">Designing a pipelined processor</a><time datetime="2022-05-06">May 6</time></li>
-      <li><a href="linear-congruential-generators.html">Linear congruential generators</a><time datetime="2022-03-13">Mar 13</time></li>
-      <li><a href="eulers-theorem-for-abelian-groups.html">Euler&rsquo;s theorem for abelian groups</a><time datetime="2022-03-01">Mar 1</time></li>
-      <li><a href="solving-the-maximum-subarray-problem-with-prefix-sums.html">Solving the maximum subarray problem with prefix sums</a><time datetime="2022-02-06">Feb 6</time></li>
-      <li><a href="bounds-for-rational-approximations-to-square-roots.html">Bounds for rational approximations to square roots</a><time datetime="2022-02-06">Feb 6</time></li>
-    </ol>
-  </section>
-
+{% endfor %}
 </div>
 
 </main>

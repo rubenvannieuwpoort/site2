@@ -1,10 +1,11 @@
 {
     "title": "Solving \"Modular Search\"",
-    "date": "2026-02-15",
-    "show": true
+    "date": "2026-02-15"
 }
 
-In Russ Cox' ["Floating-Point Printing and Parsing Can Be Simple And Fast"](https://research.swtch.com/fp) (which is both a tough and an enjoyable read, the guy's a genius!), the following problem is introduced under the name "modular search":
+# Solving "Modular Search"
+
+In Russ Cox' ["Floating-Point Printing and Parsing Can Be Simple And Fast"](https://research.swtch.com/fp), the following problem is introduced under the name "modular search":
 
 > For given positive integers $c$, $m$, find the value of $x$ such that $\text{mod}_m(c \cdot x)$ is minimal and in the range $[\text{min}, \text{max}]$.
 

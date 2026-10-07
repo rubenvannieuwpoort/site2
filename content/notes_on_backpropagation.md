@@ -1,8 +1,7 @@
 {
     "title": "Notes on backpropagation",
     "description": "My notes on backpropagation.",
-    "date": "2025-07-07",
-    "show": true
+    "date": "2025-07-07"
 }
 
 # Notes on backpropagation

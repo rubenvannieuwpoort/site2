@@ -1,8 +1,6 @@
 {
     "title": "Euler's gamma function",
-    "description": "I prove the most important property of Euler's gamma function.",
-    "date": "2023-01-25",
-    "show": true
+    "date": "2023-01-25"
 }
 
 # Euler's gamma function
