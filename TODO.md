@@ -5,6 +5,8 @@ gkhgghkjghk
 2. dfghjfghj
 ```
 
+favicon
+
 nicer codeblocks (lineno.s highlights)
 
 better commits/diffs
