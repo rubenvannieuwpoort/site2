@@ -94,13 +94,13 @@ $$ \alpha n < d (\lfloor \frac{n}{d} \rfloor + 1) $$
 
 where $\alpha = \frac{d}{2^k} \lceil \frac{2^k}{d} \rceil$. Consider the graph of the functions $y = \alpha n$ and $y = d(\lfloor \frac{n}{d} \rfloor + 1)$:
 
-![Graph](images/graph.svg)
+![Graph](/images/graph.svg)
 
 Now, $\lim_{n \rightarrow \infty} \frac{d(\lfloor \frac{n}{d} \rfloor + 1)}{n} = 1$, while $\lim_{n \rightarrow \infty} \frac{\alpha n}{n} = \alpha > 1$, so at some point the graphs must cross. Moreover between $n = pd - 1$ and $n = (p + 1)d - 1$ the function $y = \alpha n$ will increase faster than $y = d(\lfloor \frac{n}{d} \rfloor + 1)$. So if we can show that the smallest $n$ where $\alpha n > d(\lfloor \frac{n}{d} \rfloor + 1)$ is of the form $n = pd - 1$, we are done.
 
 Suppose that this is not the case. Then we have the following situation:
 
-![Another graph](images/graph2.svg)
+![Another graph](/images/graph2.svg)
 
 This implies that the slope of the red line must be steeper than $\frac{d}{d-1}$, so we have $\alpha > \frac{d}{d - 1}$. However, we assumed that $d < 2^k$, so that we have $d(d - 1) < d^2 < 2^k$. Adding $(d-1)2^k$ and dividing by $d(d-1)$, we find $\frac{2^k}{d} + 1 < \frac{2^k}{d - 1}$. Since the left side is larger than $\lceil \frac{2^k}{d} \rceil$, we have $\lceil \frac{2^k}{d} \rceil < \frac{2^k}{d - 1}$ and after multiplying by $\frac{d}{2^k}$ we find
 $$ \alpha < \frac{d}{d - 1} $$

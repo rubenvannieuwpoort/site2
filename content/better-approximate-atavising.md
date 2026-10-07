@@ -18,20 +18,20 @@ The distance function applies a simple blurring kernel, gamma encoding, and take
 
 I wrote a simple C program that does this and displays the result using SDL. The code can be found on [GitHub](https://github.com/rubenvannieuwpoort/conlife). If I run the program for this target image:
 
-![Small image of Conway](images/conway_small.png)
+![Small image of Conway](/images/conway_small.png)
 
 The result converges to this within 10 seconds:
 
-![Small atavised image of Conway](images/conway_small_atavised.png)
+![Small atavised image of Conway](/images/conway_small_atavised.png)
 
 Which arguably is of higher quality than the atavised image obtained by using the differentiable automata:
 
-![Original small atavised image of Conway](images/conway_small_atavised_original.png)
+![Original small atavised image of Conway](/images/conway_small_atavised_original.png)
 
 Using a higher resolution image is entirely feasible. This is a 707 by 900 picture of Conway:
 
-![Large atavised image of Conway](images/conway_large_atavised.png)
+![Large atavised image of Conway](/images/conway_large_atavised.png)
 
 Even atavising multiple generations is feasible, although the quality degrades quickly with the number of generations. This is the same image, atavised 3 generations:
 
-![Large image of Conway atavised over multiple generations](images/conway_large_atavised_multigen.png)
+![Large image of Conway atavised over multiple generations](/images/conway_large_atavised_multigen.png)

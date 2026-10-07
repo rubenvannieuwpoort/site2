@@ -8,7 +8,7 @@
 
 The universal asynchronous receiver-transmitter (UART) protocol is one of the simplest protocols you can use to digitally transmit data over a wire. To send data from one device to another, you will need to connect the TX pin (where the T is for transmitter) on the transmitting device to the RX pin (where the R is for receiver) on the receiving device. The transmitting device drives the signal on the TX pin, while the receiving device senses the signal on the RX pin. So, if you want to send data both ways, you'll need two wires: One which connects the TX pin of the first device to the RX pin of the second device, and one that connects the TX pin of the second device to the RX pin of the first device.
 
-![Schematic of two devices with an UART connection.](/images/connection.png)
+![Schematic of two devices with an UART connection.](//images/connection.png)
 
 This sounds very logical when you consider that the first letters in the TX and RX pins stand for transmitter and receiver. However, it is much more usual to just connect pins with the same name to each other, so it can be easy to accidentally so this wrong.
 
@@ -24,17 +24,17 @@ Transmission happens in *packets*. If no transmission is happening, the transmit
   3. Optionally, transmit a parity bit, which can be used to check if the data is transmitted correctly.
   4. Transmit a 1. This is the *stop bit*. Sometimes, two stop bits are used.
 
-![A timing diagram of a transmission using the UART protocol.](/images/uart.png)
+![A timing diagram of a transmission using the UART protocol.](//images/uart.png)
 
 Note that there is some freedom in the format. The transmitting and receiving device must use the same settings. These settings consist of the baud rate, number of data bits, the type of parity bit, and the number of stop bits. The most common settings are a baud rate of 115200, 8 data bits, no parity bit, and a single stop bit. Sometimes, the shorthand notation 115200/8N1 is used for these settings. Other possible settings for the parity bit are O for odd, and E for even, in which case the parity bit should be chosen so that it makes the total number of '1' bits (excluding the start and stop bits) odd, respectively even.
 
 Ideally, the receiving device should sample the transmitted data bits in the middle between two transitions. For this, it needs to detect the transition from high to low, which happens when the start bit is transmitted, fairly quickly. Then, it can wait for 1.5 times the time it takes to transmit a bit, and sample the first data bit in the middle. In order to detect the start bit quickly, and to be able to sample the in the middle of the bit transmission, the clock rate of the receiving device needs to be a lot faster than the baud rate. Usually, a clock speed of 16 times the baud rate is used. Again, it's a little subtle when to start sampling. On average, the first detection of a low signal will happen half a clock cycle after the transition has happened. This means that, for a clock rate of 16 times the baud rate, you need to sample at 7.5 + 16 clock cycles later. This is troublesome, because we can only sample on clock transitions (so at integer multiples of clock cycles).
 
-![Timing diagram for sampling when the clock speed is 16 times the baud rate.](/images/off_center.png)
+![Timing diagram for sampling when the clock speed is 16 times the baud rate.](//images/off_center.png)
 
 Theoretically, you can take a clock speed that is an odd integer times the baud rate, and the center of the transmission of a bit will fall nicely on an integer multiple of a clock cycle.
 
-![Timing diagram for sampling when the clock speed is 7 times the baud rate.](/images/sampling_center.png)
+![Timing diagram for sampling when the clock speed is 7 times the baud rate.](//images/sampling_center.png)
 
 In practice, powers of two are usually used, and one of the two possibilities is picked. Often, the clock speed the device is running at is not a perfect multiple of the baud rate. In this case, you can sample early if the clock speed of your device is slightly too low, and sample late if the clock speed of your device is slightly too high.
 

@@ -34,11 +34,11 @@ Most artificial neural networks are structured in layers. We can think of each o
 
 The evaluation of $f_P(x)$ is called *forward propagation* or *inference*, and it's done by evaluating the layers from first to last. Every layer takes an input $x$, the parameters $P$, and returns an output $y$.
 
-![Schematic representation of inference in a single layer in a artifical neural network.](./images/inference.svg)
+![Schematic representation of inference in a single layer in a artifical neural network.](.//images/inference.svg)
 
 During backpropagation, we go the other way: From the last layer (which has output the final output during inference), to the first layer.
 
-![Schematic representation of inference in a single layer in a artifical neural network.](./images/backprop.svg)
+![Schematic representation of inference in a single layer in a artifical neural network.](.//images/backprop.svg)
 
 To do this, the chain rule for multivariate functions can be used, so that we get $\frac{\partial \ell}{\partial x} = \frac{\partial \ell}{\partial y} \frac{\partial y}{\partial x}$ and $\frac{\partial \ell}{\partial P} = \frac{\partial \ell}{\partial y} \frac{\partial y}{\partial P}$. However, in many situations it works better to look at a single element of $\frac{\partial \ell}{\partial P}$, which is the partial derivative of $\ell$ with respect to a single parameter $p$:
 $$ \frac{\partial \ell}{\partial p} = \sum_j \frac{\partial \ell}{\partial y_j} \frac{\partial y_j}{\partial p} $$

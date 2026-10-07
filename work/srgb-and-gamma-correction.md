@@ -7,21 +7,21 @@
 
 
 Today, most images and monitors use the sRGB color space. It is convenient that they use the same color space, since it means that the RGB values from an image can be fed directly to the display. However, there is a downside to using sRGB which not enough people realize: sRGB encodes the RGB components in a nonlinear way to provide a set of colors that is perceptually uniform.
-![Encoding vs linear intensity](./images/intensities.png)
+![Encoding vs linear intensity](.//images/intensities.png)
 
 The fact that sRGB is a nonlinear color space means that adding or multiplying sRGB colors is **wrong**. This means that things like linear interpolation, fade-outs, and bilinear filtering are wrong when they are done on sRGB colors. They should be done only on *linear* sRGB color representations.
 
 It is not always noticeable when sRGB colors are used incorrectly, but the effect is obvious in some edge cases. For example, consider this example where I placed a red circle onto a green background and applied a CSS blur filter:
-![Comparison of incorrect vs correct gamma](./images/incorrect.png)
+![Comparison of incorrect vs correct gamma](.//images/incorrect.png)
 
 If you think the blurred edges of the circle look too dark, you are right. When I make the same picture in GIMP, it looks like this:
-![Comparison of incorrect vs correct gamma](./images/correct.png)
+![Comparison of incorrect vs correct gamma](.//images/correct.png)
 
 Usually, the difference is more subtle. In general, images with correct gamma handling have softer shadows and less intensive highlights. For example, consider the following example from [the "Gamma-correct lighting" article on Wolfire.com](http://blog.wolfire.com/2010/02/Gamma-correct-lighting):
-![Comparison of incorrect vs correct gamma](./images/incorrect_gamma_comparison.jpg "Comparison of incorrect vs correct gamma" =2560x1024)
+![Comparison of incorrect vs correct gamma](.//images/incorrect_gamma_comparison.jpg "Comparison of incorrect vs correct gamma" =2560x1024)
 
 The following, more pronounced example is from [the article about gamma correction on learnopengl.com](https://learnopengl.com/Advanced-Lighting/Gamma-Correction):
-![Comparison of incorrect vs correct gamma](./images/gamma_correction_srgbtextures.png)
+![Comparison of incorrect vs correct gamma](.//images/gamma_correction_srgbtextures.png)
 
 
 ## Gamma correction

@@ -9,7 +9,7 @@ An undirected [graph](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)
 
 A section of the plane that is closed in by edges is called a *face*:
 
-![An example of a planar graph.](images/graph_example.png "An example of a planar graph.")
+![An example of a planar graph.](/images/graph_example.png "An example of a planar graph.")
 
 For the number of nodes, edges, and faces in a nonempty connected planar graph, we have the following theorem:
 
