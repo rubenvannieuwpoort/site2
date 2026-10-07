@@ -5,12 +5,8 @@ gkhgghkjghk
 2. dfghjfghj
 ```
 
-fix index rendering
-
 nicer codeblocks (lineno.s highlights)
 
 better commits/diffs
 
 better h4s
-
-static math rendering
