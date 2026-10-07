@@ -92,6 +92,9 @@ main { max-width: 42rem; margin: 0 auto; }
 .social a:hover,
 .social a:focus-visible { color: var(--fg); }
 .social svg { display: block; width: 1.05rem; height: 1.05rem; fill: currentColor; }
+@media print {
+  .post .social { display: none; }
+}
 
 .site-footer {
   margin-top: 4rem;
