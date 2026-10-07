@@ -68,7 +68,7 @@ body {
 main { max-width: 42rem; margin: 0 auto; }
 
 /* ---------- headings ---------- */
-h1 { font-size: 1.9rem; line-height: 1.25; margin: 0 0 .35em; letter-spacing: -.015em; }
+h1 { font-size: 1.9rem; line-height: 1.25; margin: 0 0 .75em; letter-spacing: -.015em; }
 h2 {
   font-size: 1.3rem; margin: 2.4em 0 .6em; padding-bottom: .3em;
   border-bottom: 1px solid var(--rule); letter-spacing: -.01em;
