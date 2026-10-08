@@ -67,7 +67,6 @@
 }
 
 @media (max-width: 34rem) {
-  body.index { padding-top: 3.5rem; }
   .index .site-header { margin-bottom: 3.5rem; }
   .index .year { grid-template-columns: 1fr; row-gap: .8rem; }
 }
