@@ -457,6 +457,7 @@ details > *:not(summary) { margin-top: .9em; }
 
 figure { margin: 0 0 1.4em; }
 figure svg { display: block; max-width: 100%; height: auto; }
+img { display: block; max-width: 100%; height: auto; margin-top: 1.6em; }
 figcaption { margin-top: .6em; font-size: .82rem; color: var(--faint); }
 
 .footnotes { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); font-size: .87rem; color: var(--muted); }
