@@ -10,9 +10,13 @@ from katexmath import KatexMathExtension
 
 
 BUILD_FOLDER = './build'
+WORK_FOLDER = './work'
 CONTENT_FOLDER = './content'
 TEMPLATES_FOLDER = './templates'
 ASSETS_FOLDER = './assets'
+
+POSTS_SUBPATH = 'posts'
+WIP_SUBPATH = 'wip'
 
 # EXCLUDED_FOLDERS = ['templates', '.git', '.venv', 'build', '__pycache__']
 
@@ -51,7 +55,7 @@ def add_blank_lines_before_lists(source):
     return '\n'.join(lines)
 
 
-def build(file, front_matters):
+def build(file, output_folder, front_matters):
     filename = os.path.splitext(os.path.basename(file))[0]
 
     with open(file, 'r') as f:
@@ -59,7 +63,7 @@ def build(file, front_matters):
 
     # extract front matter
     front_matter, idx = json.JSONDecoder().raw_decode(input)
-    front_matter['link'] = f'posts/{filename}'
+    front_matter['link'] = f'{output_folder}/{filename}'
 
     front_matters.append(front_matter)
     source = input[idx:].lstrip('\n')
@@ -72,18 +76,24 @@ def build(file, front_matters):
     template = env.get_template(POST_TEMPLATE)
     result = template.render(content = content, **front_matter)
 
-    os.makedirs(os.path.join(BUILD_FOLDER, 'posts'), exist_ok=True)
-    with open(os.path.join(BUILD_FOLDER, f'posts/{filename}.html'), 'w') as f:
+    os.makedirs(os.path.join(BUILD_FOLDER, output_folder), exist_ok=True)
+    with open(os.path.join(BUILD_FOLDER, f'{output_folder}/{filename}.html'), 'w') as f:
         f.write(result)
 
 
 def main():
     front_matters = []
+
     # build HTML for articles
     for entry in os.scandir(CONTENT_FOLDER):
-        # if entry.is_dir() and entry.name not in EXCLUDED_FOLDERS:
         try:
-            build(entry.path, front_matters)
+            build(entry.path, POSTS_SUBPATH, front_matters)
+        except:
+            raise Exception(f'during processing of {entry.name}')
+
+    for entry in os.scandir(WORK_FOLDER):
+        try:
+            build(entry.path, WIP_SUBPATH, [])
         except:
             raise Exception(f'during processing of {entry.name}')
 
