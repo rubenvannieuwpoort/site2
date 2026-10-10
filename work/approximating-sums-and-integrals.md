@@ -4,7 +4,8 @@
 
 # Approximating sums and integrals
 
-In this post, I'll derive the Euler-Maclaurin summation formula, which allows you to closely approximate a summation over a function $f$ by its integral, or vice versa.
+<p class="lede" markdown="1">In this post, I'll derive the Euler-Maclaurin summation formula, which allows you to closely approximate a summation over a function $f$ by its integral, or vice versa.</p>
+
 
 We have the approximate equality:
 $$ \sum_{k = a}^{b - 1} f(k) \approx \int_a^b f(x)\text{d}x $$
@@ -22,12 +23,13 @@ Let's visualize this and draw $f(x)$, $f(\lfloor x \rfloor)$, and $E(x)$ in a si
 
 Each of the shaded parts represents an integral $\int_k^{k+1} E(x)\ \text{d}x$ for $k = a, a + 1, ..., b - 1$. When $f$ is positive and monotonically decreasing as in the graph, we have $f(x) < f(\lfloor x \rfloor)$ so that $E(x)$ is nonnegative.
 
-[BEGIN]
-Perhaps surprisingly, the sum and integral do not have to be finite in order to apply this. For example, when $f(x) = \frac{1}{x}$ we have $\int_1^n f(x)\ \text{d}x = \log(n)$ and $\int_1^\infty E(x)\ \text{d}x = \gamma \approx 0.577$ so that as $n$ goes to infinity, we have
-$$ \sum_{k = 1}^n f(k) = \int_1^\infty f(x)\ \text{d}x + \int_1^\infty E(x)\ \text{d}x  \rightarrow \gamma + \log(n) $$
-
-So for large $n$ we have $\sum_{k = 1}^n \frac{1}{k} \approx \gamma + \log(n)$
-[END]
+!!! note "Note"
+    Perhaps surprisingly, the sum and integral do not have to be finite in order to apply this.
+    
+    For example, when $f(x) = \frac{1}{x}$ we have $\int_1^n f(x)\ \text{d}x = \log(n)$ and $\int_1^\infty E(x)\ \text{d}x = \gamma \approx 0.577$ so that as $n$ goes to infinity, we have
+    $$ \sum_{k = 1}^n f(k) = \int_1^\infty f(x)\ \text{d}x + \int_1^\infty E(x)\ \text{d}x  \rightarrow \gamma + \log(n) $$
+    
+    So for large $n$ we have $\sum_{k = 1}^n \frac{1}{k} \approx \gamma + \log(n)$
 
 The area of the shaded parts is bounded by $f(a) - f(b)$, which can be seen when we gather them:
 ![](../images/f_k_integral_gathered_and_original.svg)
