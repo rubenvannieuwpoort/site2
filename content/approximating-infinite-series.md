@@ -1,113 +1,134 @@
 {
-    "title": "Approximating sums and integrals"
+    "title": "Approximating infinite series",
+    "date": "2026-10-22"
 }
 
-# Approximating sums and integrals
+# Approximating infinite series
 
-<p class="lede" markdown="1">In this post, I'll derive the Euler-Maclaurin summation formula, which allows you to closely approximate a summation over a function $f$ by its integral, or vice versa.</p>
+<p class="lede" markdown="1">In this post, I'll derive the Euler-Maclaurin summation formula, which allows you to closely approximate a summation over a function $f$ by its integral.</p>
+
+For infinite series that are hard to evaluate analytically, we can sometimes resort to *numeric evaluation*, that is, we find a close approximation of the series.
+
+For example, Euler famously applied this to the [Basel problem](https://en.wikipedia.org/wiki/Basel_problem), which asks for the value of $\sum_{k = 1}^\infty \frac{1}{k^2}$. Before finding the analytical value $\frac{pi^2}{6}$, Euler found that
+$$ \sum_{k = 1}^\infty \frac{1}{k^2} \approx 1.64493406... $$
+
+Euler found the first 20 fractional digits of the expression, and it is commonly believed that this convinced him that $\sum_{k = 1}^\infty = \frac{\pi^2}{6}$, which he subsequently proved.
+
+In this post, I'll explain how Euler was able to find such an accurate approximation. We'll start with a naive approximation method and figure out more accurate methods step-by-step.
 
 
-We have the approximate equality:
-$$ \sum_{k = a}^{b - 1} f(k) \approx \int_a^b f(x)\text{d}x \tag{1} $$
+## Infinite sums, the naive way
 
-However, in general this approximation is not very good.
+Suppose we want to numerically evaluate
+$\sum_{k = 1}^\infty f(k)$. In order for this sum to converge, $f$ must be a function that satisfies $\lim_{k \rightarrow \infty} f(k)= 0$. By definition, we have
+$$ \sum_{k = 1}^\infty f(k) = \lim_{N \rightarrow \infty} \sum_{k = 1}^N f(k) $$
 
-Using $\sum_{k = a}^{b - 1} f(k) = \int_a^b f(\lfloor x \rfloor)\text{d}x$ we can write the error term $E(x)$ as $E(x) = f(\lfloor x \rfloor) - f(x)$. We now have
-$$ \sum_{k = a}^{b - 1} f(k) = \int_a^b f(x) + E(x)\ \text{d}x \tag{2} $$
+So, as a first approximation to $\sum_{k = 1}^\infty f(k)$, we can take some $N$ and evaluate the partial sum of the first $N$ terms. We expect the approximation to get better as $N$ gets larger.
+
+This gives us our first, naive way of approximation $\sum_{k = 1}^\infty f(k)$: For large $N$, we have
+$$ \sum_{k = 1}^\infty f(k) \approx \sum_{k = 1}^N f(k) \tag{1} $$
+
+How well this method works depends greatly on how fast $f$ goes to 0.
+
+TODO: examples here
+
+
+## Estimating the tail
+
+We can write split the series explicitly in the partial sum of the first $N$ terms, and the other terms:
+
+$$ \sum_{k = 1}^N f(k) = \sum_{k = 1}^N f(k) + \sum_{k = N+1}^\infty f(k) \tag{2} $$
+
+
+By approximating an infinite series with a partial sum, we essentially drop the infinite "tail" $\sum_{k = N+1}^\infty f(k)$. Evaluating this sum directly is as hard as evaluating the original (complete) sum, but we can improve the accuracy of our initial approximation by adding an approximation to the infinite sum.
+
+For this, we can use the approximation
+
+$$ \sum_{k = a}^{b - 1} f(k) \approx \int_a^b f(x)\text{d}x $$
+
+This gives us an improved formula for approximating $\sum_{k = 1}^N f(k)$:
+$$ \sum_{k = 1}^\infty f(k) \approx \sum_{k = 1}^N f(k) + \int_{N+1}^\infty f(x)\text{d}x \tag{3} $$
+
+TODO: examples
+
+
+## A geometric improvement
+
+Now, again, we want to improve the accuracy of the approximation
+$$ \sum_{k = a}^{b - 1} f(k) \approx \int_a^b f(x)\text{d}x $$
+
+Using $\sum_{k = a}^{b - 1} f(k) = \int_a^b f(\lfloor x \rfloor)\text{d}x$ we can write the error $E(x)$ explicitly as $E(x) = f(\lfloor x \rfloor) - f(x)$. We now have
+$$ \sum_{k = a}^{b - 1} f(k) = \int_a^b f(x) + E(x)\ \text{d}x \tag{4} $$
 
 Let's visualize this and draw $f(x)$, $f(\lfloor x \rfloor)$, and $E(x)$ in a single graph:
 ![](../images/f_k_integral_diagram_clean.svg)
 
-Each of the shaded parts represents an integral $\int_k^{k+1} E(x)\ \text{d}x$ for $k = a, a + 1, ..., b - 1$. When $f$ is positive and monotonically decreasing as in the graph, we have $f(x) < f(\lfloor x \rfloor)$ so that $E(x)$ is nonnegative.
+Gathering the shaded segments on the left, we can see that the shaded areas look a lot like triangles:
 
-!!! note "Note"
-    Perhaps surprisingly, the sum and integral do not have to be finite in order to apply this.
-    
-    For example, when $f(x) = \frac{1}{x}$ we have $\int_1^n f(x)\ \text{d}x = \log(n)$ and $\int_1^\infty E(x)\ \text{d}x = \gamma \approx 0.577$ so that $\sum_{k = 1}^n \frac{1}{k} = \gamma + \log(n)$ as $n$ goes to infinity. Indeed, for large $n$ we have
-
-    $$ \sum_{k = 1}^n \frac{1}{k} \approx \gamma + \log(n) $$
-
-The area of the shaded parts is bounded by $f(a) - f(b)$, which can be seen when we gather them:
 ![](../images/f_k_integral_gathered_and_original.svg)
 
-So, when $f$ is positive and monotonically decreasing, we have
-$$ 0 < \int_a^b E(x)\ \text{d}x < f(a) - f(b) $$
+We can therefore estimate the shaded area on the interval $[k, k+1]$ with the formula for the area of a triangle:
+$$ \int_k^{k+1} E(x)\ \text{d}x \approx \frac{f(k) - f(k+1)}{2} $$
 
-Similarly we have $f(x) < f(x - 1)$, and using this we can derive similar bounds. Other similar bounds can be derived for the case where $f$ is monotonically increasing.
+If we plug this into $(4)$, we get
+$$ \sum_{k = a}^{b - 1} f(k) \approx \int_a^b f(x)\ \text{d}x + \frac{f(a) - f(b)}{2} \tag{5} $$
 
-
-## A geometric trick to improve the estimate
-
-In the general case where $f$ is not monotonically increasing or decreasing, these bounds do not hold, but we can still come up with a significantly improved estimate by using some simple geometry.
-
-In the previous graphs, we can note that the shaded areas look a lot like triangles. This is true for smooth functions which do not oscillate a lot on intervals of unit length. We can therefore easily estimate the shaded area on the interval $[k, k + 1]$ as
-$$ \int_k^{k+1} E(x)\ \text{d}x \approx \frac{f(k) - f(k + 1)}{2} $$
+Setting $a = N+1$, $b = \infty$ and using that $\lim_{k \rightarrow \infty} f(k) = 0$ gives us
+$$ \sum_{N+1}^\infty f(k) \approx \int_{N+1}^\infty f(x)\ \text{d}x + \frac{f(N+1)}{2} $$
 
 If we plug this into $(2)$, we get
-$$ \sum_{k = a}^{b - 1} f(k) \approx \int_a^b f(x)\ \text{d}x + \frac{f(a) - f(b)}{2} \tag{3} $$
+$$ \sum_{k = 1}^\infty f(k) \approx \sum_{k = 1}^N f(k) + \int_{N+1}^\infty f(x)\ \text{d}x + \frac{f(N+1)}{2} \tag{6} $$
+
+This is again an improvement over the previous approximation formula.
+
+TODO: examples
+
+A natural question is now if we can further improve this method. Intuitively you'd expect a connection with the first derivative of $f$, and it feels like you might be able to generalize this to higher-order derivatives. However, geometrically it's not clear exactly how this would generalize.
 
 
-## Application: evaluating the Basel series
-
-Let's test this on the Basel problem, which asks to evaluate $\sum_{k = 1}^\infty \frac{1}{k^2}$. The true value is $\frac{\pi^2}{6} = 1.6449...$, and summing the first 10 terms gives $1.5497...$ How much better can we do by applying our previously found formula?
-
-If we directly plug in $a = 1$, $b = \infty$ into $(3)$, we get $1.5$, which is a terrible approximation. However, we can apply the formula to *improve* the estimate that we already obtained from summing the first 10 terms. Write
-$$ \sum_{k = 1}^\infty \frac{1}{k^2} = \sum_{k = 1}^{10} \frac{1}{k^2} + \sum_{k = 11}^\infty \frac{1}{k^2} \tag{4} $$
-
-Now we estimate the last summation using $(3)$ and get
-$$ \sum_{k = 11}^\infty \frac{1}{k^2} \approx \int_{11}^\infty \frac{1}{x^2}\ \text{d}x + \frac{\frac{1}{11^2} - \frac{1}{\infty}}{2} = \frac{1}{11} + \frac{1}{2 \cdot 11^2} \approx 0.095 $$
-
-Plugging this and $\sum_{k=1}^{11} \frac{1}{k^2} = 1.5497...$ into $(4)$, we get
-$$ \sum_{k=1}^\infty \frac{1}{k^2} \approx 1.6448 $$
-
-Since the real value is $1.6449...$, this approximation -- calculated with just 10 terms -- is already correct to 3 fractional digits.
-
-A natural question is now if we can further improve this method. Intuitively you'd expect a connection between the term $\frac{f(a) - f(b)}{2}$ and the first derivative of $f$, and it feels like you might be able to generalize this to higher-order derivatives. However, geometrically it's not clear exactly how this would generalize.
-
-
-## Analysis using Taylor series
+## Analysis with Taylor series
 
 Let's try to see what's going on through the lens of Taylor series.
 
-If we take $(3)$ and set $a = k$, $b = k + 1$, the summation is just over a single term. Using $\int_k^{k+1} f(x)\ \text{d}x = \int_0^1 f(k + t)\ \text{d}t$ we get
-$$ f(k) = \int_0^1 f(k + t)\ \text{d}t + \frac{f(k) - f(k + 1)}{2} \tag{5} $$
+If we take $(5)$ and set $a = k$, $b = k+1$, the summation is just over a single term. Using $\int_k^{k+1} f(x)\ \text{d}x = \int_0^1 f(k + t)\ \text{d}t$ we get
+$$ f(k) = \int_0^1 f(k + t)\ \text{d}t + \frac{f(k) - f(k+1)}{2} \tag{7} $$
 
 Using the Taylor expansion of $f(x)$ at $x = k$, we get
 $$ f(k + t) = f(k) + f'(k)t + \frac{f''(k)}{2} t^2 + ... $$
 
-We can substitute the Taylor series both in $\int_0^1 f(k + t)\ \text{d}t$ and $f(k + 1)$:
+We can substitute the Taylor series both in $\int_0^1 f(k + t)\ \text{d}t$ and $f(k+1)$:
 $$ \begin{align*} \int_0^1 f(k + t)\ \text{d}t &= f(k) + \frac{f'(k)}{2} + \frac{f''(k)}{6} + ... \\
-f(k + 1) &= f(k) + f'(k) + \frac{f''(k)}{2} + ...
+f(k+1) &= f(k) + f'(k) + \frac{f''(k)}{2} + ...
  \end{align*} $$
 
-Substituting these expressions back in $(5)$ gives
-$$ \int_0^1 f(k + t)\ \text{d}t + \frac{f(k) - f(k + 1)}{2} \\= f(k) - \frac{1}{12} f''(k) + ... $$
+Substituting these expressions back in $(7)$ gives
+$$ \int_0^1 f(k + t)\ \text{d}t + \frac{f(k) - f(k+1)}{2} \\= f(k) - \frac{1}{12} f''(k) + ... $$
 
-In other words, the term $\frac{f(k) - f(k + 1)}{2}$ serves as a correction that cancels the term involving $f'(k)$ in the Taylor expansion of $\int_0^1 f(k + t)\ \text{d}t$. The rest terms now only derivatives of at least second order. For smooth functions we expect that the magnitude of higher derivatives is much smaller than that of lower derivatives, which explains why $(3)$ is a better approximation to $f(k)$ than $(1)$.
+In other words, the term $\frac{f(k) - f(k+1)}{2}$ serves as a correction that cancels the term involving $f'(k)$ in the Taylor expansion of $\int_0^1 f(k + t)\ \text{d}t$. The rest terms now only derivatives of at least second order. For smooth functions we expect that the magnitude of higher derivatives is much smaller than that of lower derivatives, which explains why $(6)$ is a better approximation to $f(k)$ than $(3)$.
 
 
 ## General case
 
-In the previous section we saw that adding the term $\frac{f(k) - f(k + 1)}{2}$ cancels the terms involving first order derivatives in the Taylor expansion of $\int_0^1 f(k + t)\ \text{d}t$. This idea generalizes in a straightforward way: We'll now try to cancel the terms involving the first $N$ derivatives.
+In the previous section we saw that adding the term $\frac{f(k) - f(k+1)}{2}$ cancels the terms involving first order derivatives in the Taylor expansion of $\int_0^1 f(k + t)\ \text{d}t$. This idea generalizes in a straightforward way: We'll now try to cancel the terms involving the first $N$ derivatives.
 
 That is, we try to find $c_0$, $c_1$, ..., $c_{N-1}$ such that
-$$ \int_0^1 f(k + t)\ \text{d}t + \sum_{i = 0}^{N - 1} c_i(f^{(i)}(k) - f^{(i)}(k + 1)) $$
+$$ \int_0^1 f(k + t)\ \text{d}t + \sum_{i = 0}^{N - 1} c_i(f^{(i)}(k) - f^{(i)}(k+1)) $$
 
-contains no terms involving $f'(k)$, $f''(k)$, ..., $f^{(N)}(k)$. This happens exactly when the coefficients of $f^{(n)}(k)$ in the Taylor expansions of $\int_0^1 f(k + t)\ \text{d}t$ and $-\sum_{i = 0}^{N - 1} c_i(f^{(i)}(k) - f^{(i)}(k + 1))$ match for $n = 1, 2, ..., N$.
+contains no terms involving $f'(k)$, $f''(k)$, ..., $f^{(N)}(k)$. This happens exactly when the coefficients of $f^{(n)}(k)$ in the Taylor expansions of $\int_0^1 f(k + t)\ \text{d}t$ and $-\sum_{i = 0}^{N - 1} c_i(f^{(i)}(k) - f^{(i)}(k+1))$ match for $n = 1, 2, ..., N$.
 
 Using the Taylor expansion of $f(x)$ at $x = k$ we get
 $$ \int_0^1 f(k + t)\ \text{d}t = \sum_{j = 0}^\infty \frac{1}{(j+1)!} f^{(j)}(k) $$
 
-So the coefficient of $f^{(n)}$ in the Taylor expansion of $\int_0^1 f(k + t)\ \text{d}t$ is $\frac{1}{(n + 1)!}$.
+So the coefficient of $f^{(n)}$ in the Taylor expansion of $\int_0^1 f(k + t)\ \text{d}t$ is $\frac{1}{(n+1)!}$.
 
-Likewise we have $-\sum_{i = 0}^{N - 1} c_j(f^{(j)}(k) - f^{(j)}(k + 1)) = \sum_{i = 0}^{N - 1} c_j(f^{(j)}(k + 1) - f^{(j)}(k))$ and
+Likewise we have $-\sum_{i = 0}^{N - 1} c_j(f^{(j)}(k) - f^{(j)}(k+1)) = \sum_{i = 0}^{N - 1} c_j(f^{(j)}(k+1) - f^{(j)}(k))$ and
 
-$$ c_i (f^{(i)}(k + 1) - f^{(i)}(k)) = \sum_{j = 1}^\infty \frac{c_i}{j!} f^{(i + j)}(k) $$
+$$ c_i (f^{(i)}(k+1) - f^{(i)}(k)) = \sum_{j = 1}^\infty \frac{c_i}{j!} f^{(i + j)}(k) $$
 
-So the coefficient of $f^{(n)}$ in the Taylor expansion of $-\sum_{i = 0}^{N - 1} c_j(f^{(j)}(k) - f^{(j)}(k + 1))$ is $\sum_{i = 0}^{n - 1} \frac{c_i}{(n - i)!}$.
+So the coefficient of $f^{(n)}$ in the Taylor expansion of $-\sum_{i = 0}^{N - 1} c_j(f^{(j)}(k) - f^{(j)}(k+1))$ is $\sum_{i = 0}^{n - 1} \frac{c_i}{(n - i)!}$.
 
 Equating the two gives
-$$ \sum_{i = 0}^{n - 1} \frac{1}{(n - i)!} c_i = \frac{1}{(n + 1)!} \tag{6} $$
+$$ \sum_{i = 0}^{n - 1} \frac{1}{(n - i)!} c_i = \frac{1}{(n+1)!} \tag{8} $$
 
 Evaluating this relation for $n = 1$ gives $c_0 = \frac{1}{2}$. For $n = 2$ it gives
 $$ \frac{1}{2!} c_0 + \frac{1}{1!} c_1 = \frac{1}{3!} $$
@@ -326,10 +347,10 @@ $$ \frac{1}{2}, -\frac{1}{12}, 0, \frac{1}{720}, 0, -\frac{1}{30240}, 0, -\frac{
         t.textContent = line.text;
       });
       const bb = ttText.getBBox();
-      const w = bb.width + 20, h = bb.height + 10;
+      const w = bb.width + 20, h = bb.height+10;
       ttRect.setAttribute('width', w);
       ttRect.setAttribute('height', h);
-      let tx = cx + 14, ty = cy + 14;
+      let tx = cx+14, ty = cy+14;
       if (tx + w > M.left + PW) tx = cx - 14 - w;
       if (ty + h > M.top + PH) ty = cy - 14 - h;
       tooltip.setAttribute('transform', `translate(${tx} ${Math.max(M.top, ty)})`);
@@ -392,19 +413,20 @@ $$ \frac{1}{2}, -\frac{1}{12}, 0, \frac{1}{720}, 0, -\frac{1}{30240}, 0, -\frac{
   </script>
 </div>
 
+
 ## Relation to the Bernoulli numbers
 
-Taking $(6)$ and multiplying it by $(n + 1)!$ we get
-$$ \sum_{i = 0}^{n - 1} \frac{(n + 1)!}{(n - i)!} c_i = 1 $$
+Taking $(8)$ and multiplying it by $(n+1)!$ we get
+$$ \sum_{i = 0}^{n - 1} \frac{(n+1)!}{(n - i)!} c_i = 1 $$
 
-We have $\frac{(n + 1)!}{(n - i)!} = \binom{n + 1}{i + 1} \cdot (i + 1)!$, so let's substitute $c_i = (i + 1)! B_{i + 1}$ so we can simplify. We get
-$$ \sum_{i = 1}^n \binom{n + 1}{i} B_i = 1 $$
+We have $\frac{(n+1)!}{(n - i)!} = \binom{n+1}{i+1} \cdot (i+1)!$, so let's substitute $c_i = (i+1)! B_{i+1}$ so we can simplify. We get
+$$ \sum_{i = 1}^n \binom{n+1}{i} B_i = 1 $$
 
 This is a recurrence relation for the Bernoulli numbers $B_1$, $B_2$, ... However, the recurrence relation doesn't account for the first Bernoulli number $B_0$. If we boldly extend the summation to $i = 0$ and set $n = 0$ we get $\binom{1}{0} B_0 = 1$, which is indeed correct. For $n > 0$ we have
-$$ \sum_{i = 0}^n \binom{n + 1}{i} B_i = 1 + \sum_{i = 1}^n \binom{n + 1}{i} B_i $$
+$$ \sum_{i = 0}^n \binom{n+1}{i} B_i = 1 + \sum_{i = 1}^n \binom{n+1}{i} B_i $$
 
 So we have found the following recurrence relation for the Bernoulli numbers:
-$$ \sum_{i = 0}^n \binom{n + 1}{i} B_i = \delta_{n, 0} $$
+$$ \sum_{i = 0}^n \binom{n+1}{i} B_i = \delta_{n, 0} $$
 
 Here, $\delta_{n, 0}$ is defined as
 $$ \delta_{n, 0} = \begin{cases} 1 \qquad \text{when $n = 0$} \\ 0 \qquad \text{when $n \neq 0$} \end{cases} $$
